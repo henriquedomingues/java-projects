@@ -11,14 +11,6 @@ public class AlunoService {
         alunos.add(aluno);
     }
 
-    public void setNome(String nomeDigitado) {
-        this.setNome(nomeDigitado);
-    }
-
-
-    public String getNome() {
-        return getNome();
-    }
 
     public void listarAlunos(){
 
@@ -26,9 +18,37 @@ public class AlunoService {
             System.out.println("Nenhum aluno cadrastado");
         } else {
             for (Aluno a : alunos){
-                System.out.println("Aluno: " + a);
+                System.out.println(a);
             }
         }
 
+    }
+
+    public Aluno buscarAlunoPorNome(String nome){
+        for (Aluno aluno : alunos){
+            if (aluno.getNome().equalsIgnoreCase(nome)){
+                return aluno;
+            }
+        }
+        return null;
+    }
+
+    public Aluno buscarAlunoPorRA(String RA){
+        for (Aluno aluno : alunos){
+            if (aluno.getRA().equalsIgnoreCase(RA)){
+                return aluno;
+            }
+        }
+        return null;
+    }
+
+    public boolean removerAluno(String RA){
+        for (Aluno aluno : alunos){
+            if (aluno.getRA().equalsIgnoreCase(RA)) {
+                alunos.remove(aluno);
+                return true;
+            }
+        }
+        return false;
     }
 }

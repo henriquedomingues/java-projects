@@ -10,7 +10,10 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         AlunoService service = new AlunoService();
         int opcao;
+        int opcaodois;
         String nomeDigitado;
+        String buscarAlunoNome;
+        String buscarAlunoRA;
 
         do {
             System.out.println("------BEM VINDO AO CADRASTO DE ALUNOS-----");
@@ -41,10 +44,46 @@ public class Main {
                 case 2:
                     service.listarAlunos();
                 break;
+
+                case 3:
+                    System.out.println("Escolha a forma de busca de alunos:");
+                    System.out.println("1 - Buscar pelo nome");
+                    System.out.println("2 - Buscar pelo RA");
+                    System.out.println("Digite a opção: ");
+                    opcaodois = scanner.nextInt();
+                    scanner.nextLine();
+
+                    if (opcaodois == 1) {
+                        System.out.println("Digite o nome do aluno que você deseja buscar:");
+                        buscarAlunoNome = scanner.nextLine();
+                        Aluno resultado = service.buscarAlunoPorNome(buscarAlunoNome);
+                        if (resultado != null) {
+                            System.out.println("Aluno encontrado: " + resultado);
+                        } else {
+                            System.out.println("Aluno não encontrado.");
+                        }
+                    }
+                    if (opcaodois == 2){
+                        System.out.println("Digite o RA do aluno que você deseja buscar: ");
+                        buscarAlunoRA = scanner.nextLine();
+                        Aluno resultadodois = service.buscarAlunoPorRA(buscarAlunoRA);
+                        if (resultadodois != null){
+                            System.out.println("Aluno econtrado: " + resultadodois);
+                        } else {
+                            System.out.println("Aluno não econtrado.");
+                        }
+                    }
+                break;
+
+                case 4:
+                    System.out.println("Digite o nome do RA do aluno que você que Excluir: ");
+                    String removerAluno = scanner.nextLine();
+                    service.removerAluno(removerAluno);
+
+                break;
             }
         } while (opcao != 0);
         scanner.close();
-
 
 
     }
